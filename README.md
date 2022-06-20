@@ -75,8 +75,7 @@ Với các yêu cầu đề xuất trên là mục tiêu trong phần mềm qu�
 ### <h2 id="thuvien">Các thư viện sử dụng</h2>
 
 Hệ thống được xây dựng dựng bởi các thư viện hiện đại:
-* Frontend: [React.js](https://reactjs.org/) + [Bootstrap](https://getbootstrap.com) + [JQuery](https://jquery.com)
-* Backend: [ASP .NET](https://dotnet.microsoft.com)
+
   
   
 # <h2 id="chucnang">Tóm tắt chức năng</h2>
@@ -105,85 +104,31 @@ Hệ thống được xây dựng dựng bởi các thư viện hiện đại:
   
   
  # <h2 id="yeucau">Yêu cầu hệ thống:</>
-- NodeJS 14.18.1
-- ASP.NET: .Net 5.0
+- NetBeans IDE 13 (<b>có thể sử dụng các phiên bản khác</b>)
+- Oracle Database 19c (<b>có thể sử dụng các phiên bản khác</b>)
   
   
   
 # <h2 id="caidat">Cài đặt và sử dụng</h2>
 ## <h3 id="setup">Setup môi trường</h3>
-1. Tải và cài đặt NodeJs 14.18.1. Link tải [NodeJS](https://nodejs.org/dist/v14.18.1/node-v14.18.1-x64.msi)
-+ Vào cmd gõ 
- ```sh
-   npm install yarn -g
-   ```
-2. Tải mySQL:
-- Cách tải bằng docker:
-
-Bước 1: Tải và cài docker desktop
-- Link tải: [Docker](https://docs.docker.com/desktop/windows/install/)
-
-Bước 2: Tải MySql trên docker:
-- Chạy lệnh Run as administrator Powershell -> gõ lệnh:
-```sh
-   docker run --name MySQLDB -e MYSQL_ROOT_PASSWORD=1234 -p 3306:3306 -d mysql
-   ```
-- Sau khi docker đã tải mySQL thì bấm nút run để khởi động mySQL
-
-3. Tải mySQL Workbench - Công cụ làm việc với CSDL mySQL
-- Link tải: [mySQL Workbench](https://www.mysql.com/products/workbench/)
-
-4. Tải và cài đặt Visual Studio 2017 trở lên
+1. Trước khi tải và cài đặt NetBeans bạn phải phải cài đặt sẵn JDK trên máy. 
+- Link tải [JDK](https://www.oracle.com/java/technologies/downloads/)
+2. Tải và cài đặt NetBeans. 
+- Link tải [NetBeans](https://netbeans.org/downloads/)
+2. Tải và cài đặt Oracle Database software. 
+- Link tải [Oracle](www.oracle.com/database/technologies/oracle-database-software-downloads.html)
 
 ## <h3 id="start">Khởi động dự án</h3>
-### Backend 
-- Bước 1: Mở file "CoffeeBook.sln" để khởi động dự án
-- Bước 2: migration database 
-+ Cách làm: Tools -> Nuget Package Manager -> Package Manager Console.
-+ Gõ câu lệnh: 
-```sh
-   update-database
-   ```
-- Bước 3: Kiểm tra trong CSDL xem đã có database "CoffeeBook" chưa?
-- Bước 4: Nếu đã xong bước migration database, tiếp theo ta chỉ cần run project.
 
-### Frontend
-1. Trang Admin (dành cho Admin, Manager, Staff sử dụng)
-- Bước 1: tải node-module vào các thư mục "Admin" để chạy React
-+ Cách tải: Trỏ đường dẫn vào folder Admin gõ cmd:
-  ```sh
-   yarn
-   ```
-- Bước 2: Sau khi đã tải xong node-module, để khởi động trang admin gõ cmd tại đường dẫn tại folder Admin: 
-  ```sh
-   yarn start
-   ```
-- Bước 3: Nếu nó thông báo trùng port, muốn chạy trên port khác hay không? Thì nhấn "y" và enter.
-- Bước 4: Chờ chương trình sẽ mở ra trang web của dự án.
-
-2. Trang Main (dành cho các customer mua, đặt hàng)
-- Bước 1: tải node-module vào các thư mục "Main" để chạy React
-+ Cách tải: trỏ đường dẫn vào folder Main gõ cmd:
-  ```sh
-   yarn
-   ```
-- Bước 2: Sau khi đã tải xong node-module, để khởi động trang admin gõ cmd tại đường dẫn tại folder Main:
-  ```sh
-   yarn start
-   ```
-- Bước 3: Nếu nó thông báo trùng port, muốn chạy trên port khác hay không? Thì nhấn "y" và enter.
-- Bước 4: Chờ chương trình sẽ mở ra trang web của dự án.
 
 ## <h2 id="lienhe">Liên hệ</h2>
-
+  
 Chu Quyết Thắng, Nguyễn Quốc Trung, Đỗ Mạnh Tuấn
 
 Project Link: [https://github.com/ChuQuyetThang/Java_IS216.M21_9) </br>
-Email: [Nhật](mailto:nhatvh.work@gmail.com)
+Email: [Trung](mailto:nhatvh.work@gmail.com)
 
 # <h2 id="banquyen">Bản quyền</h3>
 Copyright © 2022, [Java_IS216.M21_9](https://github.com/ChuQuyetThang/Java_IS216.M21_9).
 # <h2 id="thamkhao">Tài liệu tham khảo</h2> 
-- https://www.w3schools.com/
-- https://www.reactjs.org/
-- https://dotnet.microsoft.com/learn/aspnet/hello-world-tutorial/intro
+1. [Tài liệu Oracle của hãng Oracle](https://docs.oracle.com/en/database/oracle/oracle-database/index.html)
