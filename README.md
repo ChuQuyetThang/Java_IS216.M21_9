@@ -120,11 +120,11 @@ Hệ thống được xây dựng dựng bởi các công cụ hiện đại:
 
 ## <h3 id="start">Khởi động dự án</h3>
 Sau khi đã cài đặt được những chương trình trên, ta thực hiện lần lượt các bước sau:
-Bước 1: Tải File QuanLyĐTDD.rar về máy sau đó giải nén thư mục.
-Bước 2: Tải file QuanLyĐTDD.sql. Vào oracle tạo user “” mật khẩu “”.
-Bước 3: Tạo Connect với user vừa tạo. Sau đó tiến hành excute file sql trên user vừa tạo.
-Bước 4: Vào netbeans, chọn file -> open projects -> đến thư mục mình vừa giải nén mở project.
-Bước 5: Mở folder source packages -> quanlydtdd -> click chuột phải ở DoAnLon.java -> run File.
+Bước 1: Tải File QuanLyCuaHangDTDD.rar về máy sau đó giải nén thư mục.
+Bước 2: Tải file QuanLyCuaHangDTDD.sql. Vào oracle tạo user “c##user10” mật khẩu “userpass”.
+Bước 3: Tạo Connect với user vừa tạo. Sau đó tiến hành chạy file sql trên user vừa tạo.
+Bước 4: Vào Netbeans, chọn File -> Open projects -> đến thư mục mình vừa giải nén mở project.
+Bước 5: Mở folder Source Packages -> View -> click chuột phải ở DoAn.java -> run File.
 
 
 ## <h2 id="lienhe">Liên hệ</h2>
