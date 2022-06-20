@@ -65,17 +65,17 @@ Với các yêu cầu đề xuất trên là mục tiêu trong phần mềm qu�
  
 | STT| Họ tên            | MSSV     | FB                                                                           |   SĐT     |     Nhiệm vụ     |   Đánh giá % |
 |:--:|-------------------|----------|------------------------------------------------------------------------------|-----------|------------------|--------------|
-| 1  | Chu Quyết Thắng   | 20521892 |[Quyết Thắng](https://www.facebook.com/chuquyetthang2952)                     |0353241981 |Trưởng nhóm, Code |     25       |
+| 1  | Chu Quyết Thắng   | 20521892 |[Quyết Thắng](https://www.facebook.com/chuquyetthang2952)                     |0353241981 |Trưởng nhóm,Code  |     25       |
 | 2  | Nguyễn Quốc Trung | 20522073 |[Nguyễn Quốc Trung](https://www.facebook.com/profile.php?id=100038858731211)  |0378269526 |Code              |     35       | 
-| 3  | Đỗ Mạnh Tuấn      | 20522108 |[Mạnh Tuấn](https://www.facebook.com/23072002td)                              |0355978908 |Code              |     20       |
+| 3  | Đỗ Mạnh Tuấn      | 20522108 |[Mạnh Tuấn](https://www.facebook.com/23072002td)                              |0355978908 |Code, Database    |     20       |
 | 4  | Nguyễn Ngọc Thảo  | 20521933 |[Ngọc Thảo](https://www.facebook.com/profile.php?id=100009468992615)          |0923109817 |Tester            |     20       |
   
   
   
 ### <h2 id="thuvien">Các thư viện sử dụng</h2>
 
-Hệ thống được xây dựng dựng bởi các thư viện hiện đại:
-
+Hệ thống được xây dựng dựng bởi các công cụ hiện đại:
+- [Java Swing](https://netbeans.apache.org/kb/docs/java/quickstart-gui.html)
   
   
 # <h2 id="chucnang">Tóm tắt chức năng</h2>
@@ -119,6 +119,12 @@ Hệ thống được xây dựng dựng bởi các thư viện hiện đại:
 - Link tải [Oracle](www.oracle.com/database/technologies/oracle-database-software-downloads.html)
 
 ## <h3 id="start">Khởi động dự án</h3>
+Sau khi đã cài đặt được những chương trình trên, ta thực hiện lần lượt các bước sau:
+Bước 1: Tải File QuanLyĐTDD.rar về máy sau đó giải nén thư mục.
+Bước 2: Tải file QuanLyĐTDD.sql. Vào oracle tạo user “” mật khẩu “”.
+Bước 3: Tạo Connect với user vừa tạo. Sau đó tiến hành excute file sql trên user vừa tạo.
+Bước 4: Vào netbeans, chọn file -> open projects -> đến thư mục mình vừa giải nén mở project.
+Bước 5: Mở folder source packages -> quanlydtdd -> click chuột phải ở DoAnLon.java -> run File.
 
 
 ## <h2 id="lienhe">Liên hệ</h2>
