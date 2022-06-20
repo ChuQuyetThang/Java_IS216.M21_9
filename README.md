@@ -132,3 +132,4 @@ Email: [Trung](mailto:nhatvh.work@gmail.com)
 Copyright © 2022, [Java_IS216.M21_9](https://github.com/ChuQuyetThang/Java_IS216.M21_9).
 # <h2 id="thamkhao">Tài liệu tham khảo</h2> 
 1. [Tài liệu Oracle của hãng Oracle](https://docs.oracle.com/en/database/oracle/oracle-database/index.html)
+2. [Tài liệu về Java, Java Swing](https://docs.oracle.com/javase/tutorial/)
