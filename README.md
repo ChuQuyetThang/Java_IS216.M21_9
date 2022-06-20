@@ -68,7 +68,7 @@ Với các yêu cầu đề xuất trên là mục tiêu trong phần mềm qu�
 | 1  | Chu Quyết Thắng   | 20521892 |[Quyết Thắng](https://www.facebook.com/chuquyetthang2952)                     |0353241981 |Trưởng nhóm,Code  |     25       |
 | 2  | Nguyễn Quốc Trung | 20522073 |[Nguyễn Quốc Trung](https://www.facebook.com/profile.php?id=100038858731211)  |0378269526 |Code              |     35       | 
 | 3  | Đỗ Mạnh Tuấn      | 20522108 |[Mạnh Tuấn](https://www.facebook.com/23072002td)                              |0355978908 |Code, Database    |     20       |
-| 4  | Nguyễn Ngọc Thảo  | 20521933 |[Ngọc Thảo](https://www.facebook.com/profile.php?id=100009468992615)          |0923109817 |Tester            |     20       |
+| 4  | Nguyễn Ngọc Thảo  | 20521933 |[Ngọc Thảo](https://www.facebook.com/profile.php?id=100009468992615)          |0352811100 |Tester            |     20       |
   
   
   
