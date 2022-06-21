@@ -99,7 +99,8 @@ Hệ thống được xây dựng dựng bởi các công cụ hiện đại:
   + Quản lý bán hàng (<b>thêm, xoá, sửa, tra cứu</b>)
   + Quản lý khuyến mãi (<b>thêm, xoá, sửa, tra cứu</b>)
   + Quản lý bảo hành (<b>thêm, xoá, sửa, tra cứu</b>) <br/>
-- Tạo account tương ứng cho quản lý, nhân viên và tự động phân quyền theo các role đã được định sẵn. <br/>
+- Tạo account tương ứng cho quản lý, nhân viên và tự động phân quyền theo các role đã được định sẵn. 
+- Xuất file excel cho khách hàng và nhân viên.<br/>
 
   
   
