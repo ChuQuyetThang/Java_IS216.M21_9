@@ -20,15 +20,15 @@ import java.util.List;
  * @author ASUS
  */
 public class prKhuyenMai {
-    public int insert(String maKM, String tenKM,Date ngayBD, Date ngayKT, double phantramKM){
+    public int insert(String maKM, String tenKM,String ngayBD, String ngayKT, double phantramKM){
         int countResult =0;
         try(Connection con = KetNoiDatabase.getOracleConnection()){
             String query = "{CALL THEM_KHUYENMAI(?,?,?,?,?)}";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setString(1, maKM);
             pstmt.setString(2,tenKM);
-            pstmt.setDate(3,new java.sql.Date(ngayBD.getTime()));
-            pstmt.setDate(4,new java.sql.Date(ngayKT.getTime()));
+            pstmt.setString(3,ngayBD);
+            pstmt.setString(4,ngayKT);
             pstmt.setDouble(5, phantramKM);
             countResult=pstmt.executeUpdate();
         }
@@ -39,15 +39,15 @@ public class prKhuyenMai {
         return countResult; 
     }
     
-    public int update (String maKM, String tenKM,Date ngayBD, Date ngayKT, double phantramKM){
+    public int update (String maKM, String tenKM,String ngayBD, String ngayKT, double phantramKM){
         int countResult =0;
         try(Connection con = KetNoiDatabase.getOracleConnection()){
             String query = "{CALL CAPNHAT_KHUYENMAI(?,?,?,?,?)}";
             PreparedStatement pstmt = con.prepareStatement(query);  
             pstmt.setString(1, maKM);
             pstmt.setString(2, tenKM);
-            pstmt.setDate(3,new java.sql.Date(ngayBD.getTime()));
-            pstmt.setDate(4,new java.sql.Date(ngayKT.getTime()));
+            pstmt.setString(3,ngayBD);
+            pstmt.setString(4,ngayKT);
             pstmt.setDouble(5, phantramKM);
             countResult=pstmt.executeUpdate();
         }

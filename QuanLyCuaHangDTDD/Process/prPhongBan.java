@@ -10,7 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -114,4 +116,20 @@ public class prPhongBan {
             return count;
         }
    }
+    
+    public HashMap<String,String> getListPhongBan() {
+        HashMap<String,String> listKhachHang = new HashMap<>();
+        
+        try ( Connection con = KetNoiDatabase.getOracleConnection()) {
+            String SQL = "SELECT DISTINCT mapb,tenpb FROM PhongBan ORDER BY mapb";
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(SQL);
+            while (rs.next()) {
+                listKhachHang.put(rs.getString("mapb"),rs.getString("mapb"));
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return listKhachHang;
+    }
 }

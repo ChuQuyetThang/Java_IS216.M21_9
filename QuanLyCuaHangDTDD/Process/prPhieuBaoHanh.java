@@ -12,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 /**
@@ -20,14 +19,14 @@ import java.util.List;
  * @author ASUS
  */
 public class prPhieuBaoHanh {
-    public int insert(String maPBH, Date ngayBD, Date ngayHH){
+    public int insert(String maPBH, String ngayBD, String ngayHH){
         int countResult =0;
         try(Connection con = KetNoiDatabase.getOracleConnection()){
             String query = "{CALL THEM_PHIEUBAOHANH(?,?,?)}";
             PreparedStatement pstmt = con.prepareStatement(query);
             pstmt.setString(1, maPBH);
-            pstmt.setDate(2,new java.sql.Date(ngayBD.getTime()));
-            pstmt.setDate(3,new java.sql.Date(ngayHH.getTime()));
+            pstmt.setString(2,ngayBD);
+            pstmt.setString(3,ngayHH);
             countResult=pstmt.executeUpdate();
         }
         catch(Exception e){
@@ -37,14 +36,14 @@ public class prPhieuBaoHanh {
         return countResult; 
     }
     
-    public int update (String maPBH, Date ngayBD, Date ngayHH){
+    public int update (String maPBH, String ngayBD, String ngayHH){
         int countResult =0;
         try(Connection con = KetNoiDatabase.getOracleConnection()){
             String query = "{CALL CAPNHAT_PHIEUBAOHANH(?,?,?)}";
             PreparedStatement pstmt = con.prepareStatement(query);  
             pstmt.setString(1, maPBH);
-            pstmt.setDate(2,new java.sql.Date(ngayBD.getTime()));
-            pstmt.setDate(3,new java.sql.Date(ngayHH.getTime()));
+            pstmt.setString(2,ngayBD);
+            pstmt.setString(3,ngayHH);
             countResult=pstmt.executeUpdate();
         }
         catch(Exception e){

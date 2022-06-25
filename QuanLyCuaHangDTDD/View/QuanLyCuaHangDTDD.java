@@ -4,12 +4,12 @@
  */
 package View;
 
-
 /**
  *
  * @author ASUS
  */
 public class QuanLyCuaHangDTDD {
+
     /**
      * @param args the command line arguments
      */

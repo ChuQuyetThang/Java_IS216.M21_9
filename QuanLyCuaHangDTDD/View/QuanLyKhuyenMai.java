@@ -12,7 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -92,7 +91,9 @@ public class QuanLyKhuyenMai extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtmaKM = new javax.swing.JTextField();
+        txtngayBD = new javax.swing.JTextField();
         txttenCT = new javax.swing.JTextField();
+        txtngayKT = new javax.swing.JTextField();
         txtphantramKM = new javax.swing.JTextField();
         btnthemKM = new javax.swing.JButton();
         btnxoaKM = new javax.swing.JButton();
@@ -103,8 +104,6 @@ public class QuanLyKhuyenMai extends javax.swing.JPanel {
         btntracuuKM = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableKM = new javax.swing.JTable();
-        dateBD = new com.toedter.calendar.JDateChooser();
-        dateKT = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 51));
@@ -136,7 +135,11 @@ public class QuanLyKhuyenMai extends javax.swing.JPanel {
             }
         });
 
+        txtngayBD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
         txttenCT.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        txtngayKT.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         txtphantramKM.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -208,10 +211,6 @@ public class QuanLyKhuyenMai extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tableKM);
 
-        dateBD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        dateKT.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -234,12 +233,13 @@ public class QuanLyKhuyenMai extends javax.swing.JPanel {
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel6))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtmaKM, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txttenCT, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                                    .addComponent(txtphantramKM)
-                                    .addComponent(dateBD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(dateKT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtngayBD, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtmaKM, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txttenCT, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                                        .addComponent(txtphantramKM))
+                                    .addComponent(txtngayKT, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -290,14 +290,14 @@ public class QuanLyKhuyenMai extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(txtphantramKM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(dateBD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(txtngayBD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(dateKT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtngayKT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnthemKM)
@@ -319,8 +319,8 @@ public class QuanLyKhuyenMai extends javax.swing.JPanel {
         txtmaKM.setText(getmaKM());
         txttenCT.setText("");
         txtphantramKM.setText("0");
-        dateBD.setDate(null);
-        dateKT.setDate(null);
+        txtngayBD.setText("");
+        txtngayKT.setText("");
         loadDataToTable();
     }//GEN-LAST:event_btnthemKMActionPerformed
 
@@ -357,11 +357,18 @@ public class QuanLyKhuyenMai extends javax.swing.JPanel {
         String maKMText = txtmaKM.getText();
         String tenCTText = txttenCT.getText();
         double phantramKMText = Double.parseDouble(txtphantramKM.getText());
-        SimpleDateFormat DateFormat = new SimpleDateFormat("dd-MMM-yy");
-        String NgayBDdate =DateFormat.format(dateBD.getDate());
-        String NgayKTdate = DateFormat.format(dateKT.getDate());
-        prKhuyenMai kt = new prKhuyenMai();
-        countResult= kt.update(maKMText,tenCTText,NgayBDdate,NgayKTdate,phantramKMText);
+        SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try{
+            java.util.Date NgayBDdate =DateFormat.parse(txtngayBD.getText());
+            java.util.Date NgayKTdate = DateFormat.parse(txtngayKT.getText());
+            prKhuyenMai kt = new prKhuyenMai();
+            countResult= kt.update(maKMText,tenCTText,NgayBDdate,NgayKTdate,phantramKMText);
+        }
+        catch(ParseException ex){
+            JOptionPane.showMessageDialog(this, "Có lỗi trong quá trình cập nhật", 
+                    "Sai ngày định dạng",JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(QuanLyBaoHanh.class.getName()).log(Level.SEVERE, null, ex);
+        }
     
         if(countResult == 0){
              JOptionPane.showMessageDialog(this,"Cập nhật không thành công!", "Lỗi cập nhật CSDL",JOptionPane.ERROR_MESSAGE);
@@ -378,11 +385,18 @@ public class QuanLyKhuyenMai extends javax.swing.JPanel {
         String maKMText = txtmaKM.getText();
         String tenCTText = txttenCT.getText();
         Double phantramKMText = Double.parseDouble(txtphantramKM.getText());
-        SimpleDateFormat DateFormat = new SimpleDateFormat("dd-MMM-yy");
-        String NgayBDdate =DateFormat.format(dateBD.getDate());
-        String NgayKTdate =DateFormat.format(dateKT.getDate());
-        prKhuyenMai kt = new prKhuyenMai();
-        countResult= kt.insert(maKMText, tenCTText, NgayBDdate, NgayKTdate,phantramKMText);
+        SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try{
+            java.util.Date NgayBDdate =DateFormat.parse(txtngayBD.getText());
+            java.util.Date NgayKTdate =DateFormat.parse(txtngayKT.getText());
+            prKhuyenMai kt = new prKhuyenMai();
+            countResult= kt.insert(maKMText, tenCTText, NgayBDdate, NgayKTdate,phantramKMText);
+        }
+        catch(ParseException ex){
+            JOptionPane.showMessageDialog(this, "Có lỗi trong quá trình lưu", 
+                    "Sai ngày định dạng",JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(QuanLyBaoHanh.class.getName()).log(Level.SEVERE, null, ex);
+        }
     
         if(countResult == 0){
              JOptionPane.showMessageDialog(this,"Lưu không thành công!", "Lỗi thêm CSDL",JOptionPane.ERROR_MESSAGE);
@@ -400,8 +414,8 @@ public class QuanLyKhuyenMai extends javax.swing.JPanel {
             if(km != null){
                 txtmaKM.setText(km.getMaKM());
                 txttenCT.setText(km.getTenKM());
-                dateBD.setDate(km.getNgayBD());
-                dateKT.setDate(km.getNgayKT());
+                txtngayBD.setText(km.getNgayBD().toString());
+                txtngayKT.setText(km.getNgayKT().toString());
                 txtphantramKM.setText(String.format("%.2f", km.getPhantramKM()));
             }else{
                 ThongBao.showThongBao(parentForm, "Không tìm thấy thông tin khuyến mãi theo yêu cầu", "Thông báo");
@@ -425,8 +439,8 @@ public class QuanLyKhuyenMai extends javax.swing.JPanel {
                 if(km != null){
                     txtmaKM.setText(km.getMaKM());
                     txttenCT.setText(km.getTenKM());
-                    dateBD.setDate(km.getNgayBD());
-                    dateKT.setDate(km.getNgayKT());
+                    txtngayBD.setText(km.getNgayBD().toString());
+                    txtngayKT.setText(km.getNgayKT().toString());
                     txtphantramKM.setText(String.format("%.2f", km.getPhantramKM()));
                 }
             }
@@ -443,8 +457,6 @@ public class QuanLyKhuyenMai extends javax.swing.JPanel {
     private javax.swing.JButton btnthemKM;
     private javax.swing.JButton btntracuuKM;
     private javax.swing.JButton btnxoaKM;
-    private com.toedter.calendar.JDateChooser dateBD;
-    private com.toedter.calendar.JDateChooser dateKT;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -458,6 +470,8 @@ public class QuanLyKhuyenMai extends javax.swing.JPanel {
     private javax.swing.JTable tableKM;
     private javax.swing.JTextField txtmaKM;
     private javax.swing.JTextField txtmaKM1;
+    private javax.swing.JTextField txtngayBD;
+    private javax.swing.JTextField txtngayKT;
     private javax.swing.JTextField txtphantramKM;
     private javax.swing.JTextField txttenCT;
     // End of variables declaration//GEN-END:variables
