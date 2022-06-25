@@ -11,10 +11,14 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import Process.prNhanVien;
 import Model.NhanVien;
+import Process.prPhongBan;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -30,6 +34,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class QuanLyNhanVien extends javax.swing.JPanel {
     private GiaoDienChinh parentForm;
     private DefaultTableModel tblModel;
+    
+    ArrayList<String> listmaPB=null;
     /**
      * Creates new form QuanLyNhanVien
      */
@@ -39,6 +45,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         initTable();
         
         loadDataToTable();
+        setListPhongBan();
     }
     
     private void initTable(){
@@ -111,7 +118,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         txtCMND = new javax.swing.JTextField();
         txtSongaylam = new javax.swing.JTextField();
         txtSDT = new javax.swing.JTextField();
-        txtMaPB = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         btnThemNV = new javax.swing.JButton();
@@ -124,6 +130,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableNhanVien = new javax.swing.JTable();
         btnXuatFile = new javax.swing.JButton();
+        cbmaPB = new javax.swing.JComboBox<>();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 51, 51));
@@ -186,8 +193,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         txtSongaylam.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         txtSDT.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        txtMaPB.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel11.setText("Email:");
@@ -276,6 +281,9 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             }
         });
 
+        cbmaPB.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbmaPB.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -291,7 +299,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                 .addComponent(txtMaNV1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnTracuuNV)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 143, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -332,15 +340,15 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                                         .addComponent(txtEmail)
                                         .addComponent(txtSDT)
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                            .addComponent(txtMaPB, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(cbmaPB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(jLabel9)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(txtSongaylam, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(txtCMND, javax.swing.GroupLayout.Alignment.TRAILING))))
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -386,10 +394,10 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                             .addComponent(txtSDT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtMaPB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)
                             .addComponent(jLabel9)
-                            .addComponent(txtSongaylam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtSongaylam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbmaPB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -417,7 +425,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         txtMaNV.setText(getmaKM());
         txtTenNV.setText("");
         txtCMND.setText("");
-        txtMaPB.setText("");
         txtSDT.setText("");
         txtEmail.setText("");
         txtDiachi.setText("");
@@ -442,7 +449,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             nv.setDiachi(txtDiachi.getText());
             nv.setEmail(txtEmail.getText());
             nv.setSDT(txtSDT.getText());
-            nv.setMaPB(txtMaPB.getText());
+            nv.setMaPB(cbmaPB.getSelectedItem().toString());
             nv.setSongaylam(txtSongaylam.getText());
             nv.setGioitinh(rdbNam.isSelected()?1:0);
             
@@ -484,7 +491,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             nv.setEmail(txtEmail.getText());
             nv.setSDT(txtSDT.getText());
             nv.setSongaylam(txtSongaylam.getText());
-            nv.setMaPB(txtMaPB.getText());
+            nv.setMaPB(cbmaPB.getSelectedItem().toString());
             nv.setGioitinh(rdbNam.isSelected()?1: 0);
             
             prNhanVien kt = new prNhanVien();
@@ -547,7 +554,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                     txtSDT.setText(nv.getSDT());
                     txtEmail.setText(nv.getEmail());
                     txtSongaylam.setText(nv.getSongaylam());
-                    txtMaPB.setText(nv.getMaPB());
+                    cbmaPB.setSelectedItem(nv.getMaPB());
                     rdbNam.setSelected(nv.getGioitinh()==1? true:false);
                     rdbNu.setSelected(nv.getGioitinh()==0? true:false);
                     
@@ -572,7 +579,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                 txtSDT.setText(nv.getSDT());
                 txtEmail.setText(nv.getEmail());
                 txtSongaylam.setText(nv.getSongaylam());
-                txtMaPB.setText(nv.getMaPB());
+                cbmaPB.setSelectedItem(nv.getMaPB());
                 rdbNam.setSelected(nv.getGioitinh()==1? true:false);
             }else{
                 ThongBao.showThongBao(parentForm, "Không tìm thấy mã nhân viên theo yêu cầu", "Thông báo");
@@ -663,6 +670,15 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
        System.out.println("Xuất file thành công!!");
     }//GEN-LAST:event_btnXuatFileActionPerformed
 
+    private void setListPhongBan(){
+        prPhongBan kt = new prPhongBan();
+        HashMap<String, String> listPhieuBaoHanh = kt.getListPhongBan();
+        listmaPB = new ArrayList<String>();
+        listmaPB.addAll(listPhieuBaoHanh.keySet());
+        ArrayList<String> listMaPB = new ArrayList<String>();
+        listMaPB.addAll(listPhieuBaoHanh.values());
+        cbmaPB.setModel(new DefaultComboBoxModel(listMaPB.toArray()));
+    }
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -673,6 +689,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
     private javax.swing.JButton btnXoaNV;
     private javax.swing.JButton btnXuatFile;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cbmaPB;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -696,7 +713,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtMaNV;
     private javax.swing.JTextField txtMaNV1;
-    private javax.swing.JTextField txtMaPB;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtSongaylam;
     private javax.swing.JTextField txtTenNV;

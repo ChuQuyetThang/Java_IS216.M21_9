@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
  * @author ASUS
  */
 public class GiaoDienChinh extends javax.swing.JFrame {
+
     private QuanLySanPham qlsp;
     private QuanLyKhachHang qlkh;
     private QuanLyNhaCungCap qlncc;

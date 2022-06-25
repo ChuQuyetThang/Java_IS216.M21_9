@@ -17,6 +17,11 @@ import Process.prPhieuBaoHanh;
 import Model.PhieuBaoHanh;
 import Model.BaoHanhSP;
 import Process.prBaoHanhSP;
+import Process.prSanPham;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -25,6 +30,8 @@ import Process.prBaoHanhSP;
 public class QuanLyBaoHanh extends javax.swing.JPanel {
     private GiaoDienChinh parentForm;
     private DefaultTableModel tblModel1, tblModel2;
+    
+     ArrayList<String> listmaSP = null;
     /**
      * Creates new form QuanLyBaoHanh
      */
@@ -34,6 +41,8 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
         initTable();
         
         loadDataToTable();
+        
+        setListMaSP();
     }
     
     
@@ -125,8 +134,6 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         txtmaBH = new javax.swing.JTextField();
-        txtmaSP = new javax.swing.JTextField();
-        txtngayBH = new javax.swing.JTextField();
         txtchiphiBH = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtmotaLoi = new javax.swing.JTextArea();
@@ -139,16 +146,16 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
         btntracuuBH = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableBHSP = new javax.swing.JTable();
+        dateBH = new com.toedter.calendar.JDateChooser();
+        cbmaSP = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btnThemPBH = new javax.swing.JButton();
-        txtNgaybatdau = new javax.swing.JTextField();
         btnXoaPBH = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        txtNgayhethan = new javax.swing.JTextField();
         btnCapnhatPBH = new javax.swing.JButton();
         btnLuuPBH = new javax.swing.JButton();
         btnTracuuPBH = new javax.swing.JButton();
@@ -158,6 +165,8 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
         tablePhieuBaoHanh = new javax.swing.JTable();
         jSeparator1 = new javax.swing.JSeparator();
         txtMaPBH = new javax.swing.JTextField();
+        dateBD = new com.toedter.calendar.JDateChooser();
+        dateHH = new com.toedter.calendar.JDateChooser();
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 51, 51));
@@ -184,10 +193,6 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
         jLabel14.setText("Chi phí bảo hành:");
 
         txtmaBH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        txtmaSP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        txtngayBH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         txtchiphiBH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -268,60 +273,63 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(tableBHSP);
 
+        dateBH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        cbmaSP.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbmaSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtmaBH1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btntracuuBH)
-                        .addGap(197, 197, 197))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtmaBH1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btntracuuBH)
+                .addGap(197, 197, 197))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(btncapnhatBH, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnluuBH, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(btnthemBH)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnxoaBH, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel13)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnthemBH)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel10)
+                                        .addComponent(jLabel11))
+                                    .addGap(29, 29, 29))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                    .addComponent(jLabel12)
+                                    .addGap(18, 18, 18)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtmaBH)
+                            .addComponent(dateBH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtchiphiBH)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(jPanel2Layout.createSequentialGroup()
-                                            .addComponent(btncapnhatBH, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnluuBH, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(btnxoaBH, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                            .addComponent(jLabel13)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel10)
-                                                        .addComponent(jLabel11))
-                                                    .addGap(29, 29, 29))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                    .addComponent(jLabel12)
-                                                    .addGap(18, 18, 18)))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                                .addComponent(jLabel14)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtmaSP)
-                                            .addComponent(txtngayBH, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                                            .addComponent(txtchiphiBH)
-                                            .addComponent(txtmaBH))))))
-                        .addGap(13, 13, 13)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(cbmaSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(13, 13, 13)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 676, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel7)
@@ -352,13 +360,13 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
                             .addComponent(txtmaBH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtmaSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11))
+                            .addComponent(jLabel11)
+                            .addComponent(cbmaSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtngayBH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12))
-                        .addGap(15, 15, 15)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(dateBH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtchiphiBH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel14))
@@ -367,14 +375,14 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
                             .addComponent(jLabel13)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnthemBH)
                             .addComponent(btnxoaBH))
                         .addGap(17, 17, 17)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnluuBH)
                             .addComponent(btncapnhatBH))
-                        .addGap(0, 67, Short.MAX_VALUE))
+                        .addGap(0, 70, Short.MAX_VALUE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -404,8 +412,6 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
             }
         });
 
-        txtNgaybatdau.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
         btnXoaPBH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnXoaPBH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/delete.png"))); // NOI18N
         btnXoaPBH.setText("Xóa");
@@ -417,8 +423,6 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Ngày hết hạn:");
-
-        txtNgayhethan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         btnCapnhatPBH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnCapnhatPBH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Resource/update.png"))); // NOI18N
@@ -472,6 +476,10 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
 
         txtMaPBH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
+        dateBD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        dateHH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -500,10 +508,10 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
                             .addComponent(btnLuuPBH, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNgaybatdau, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMaPBH, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNgayhethan, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtMaPBH, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                            .addComponent(dateBD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(dateHH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
                 .addContainerGap())
@@ -512,7 +520,7 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(22, 22, 22)
                     .addComponent(jLabel1)
-                    .addContainerGap(834, Short.MAX_VALUE))
+                    .addContainerGap(857, Short.MAX_VALUE))
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
@@ -532,14 +540,14 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
                             .addComponent(txtMaPBH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(txtNgaybatdau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dateBD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(txtNgayhethan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36)
+                            .addComponent(dateHH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnThemPBH)
                             .addComponent(btnLuuPBH))
@@ -604,9 +612,10 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaPBHActionPerformed
 
     private void btnThemPBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemPBHActionPerformed
+        Date date=java.util.Calendar.getInstance().getTime(); 
         txtMaPBH.setText(getmaPBH());
-        txtNgaybatdau.setText(java.time.LocalDate.now().toString());
-        txtNgayhethan.setText("");
+        dateBD.setDate(date);
+        dateHH.setDate(null);
         loadDataToTable();
     }//GEN-LAST:event_btnThemPBHActionPerformed
 
@@ -615,18 +624,11 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
         KiemTraDuLieu.DuLieuTrong(txtMaPBH, sb, "Mã phiếu bảo hành trống!!");
         int countResult=0;
         String maPBHText = txtMaPBH.getText();
-        SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try{
-            java.util.Date NgayBDdate =DateFormat.parse(txtNgaybatdau.getText());
-            java.util.Date NgayHHdate = DateFormat.parse(txtNgayhethan.getText());
-            prPhieuBaoHanh kt = new prPhieuBaoHanh();
-            countResult= kt.update(maPBHText, NgayBDdate, NgayHHdate);
-        }
-        catch(ParseException ex){
-            JOptionPane.showMessageDialog(this, "Có lỗi trong quá trình cập nhật", 
-                    "Sai ngày định dạng",JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(QuanLyBaoHanh.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        SimpleDateFormat DateFormat = new SimpleDateFormat("dd-MMM-yy");
+        String NgayBDdate =DateFormat.format(dateBD.getDate());
+        String NgayHHdate = DateFormat.format(dateHH.getDate());
+        prPhieuBaoHanh kt = new prPhieuBaoHanh();
+        countResult= kt.update(maPBHText, NgayBDdate, NgayHHdate);
     
         if(countResult == 0){
              JOptionPane.showMessageDialog(this,"Cập nhật không thành công!", "Lỗi cập nhật CSDL",JOptionPane.ERROR_MESSAGE);
@@ -641,19 +643,11 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
         KiemTraDuLieu.DuLieuTrong(txtMaPBH, sb, "Mã phiếu bảo hành trống!!");
         int countResult=0;
         String maPBHText = txtMaPBH.getText();
-        SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try{
-            java.util.Date NgayBDdate =DateFormat.parse(txtNgaybatdau.getText());
-            java.util.Date NgayHHdate = DateFormat.parse(txtNgayhethan.getText());
-            prPhieuBaoHanh kt = new prPhieuBaoHanh();
-            countResult= kt.insert(maPBHText, NgayBDdate, NgayHHdate);
-            
-        }
-        catch(ParseException ex){
-            JOptionPane.showMessageDialog(this, "Có lỗi trong quá trình lưu", 
-                    "Sai ngày định dạng",JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(QuanLyBaoHanh.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        SimpleDateFormat DateFormat = new SimpleDateFormat("dd-MMM-yy");
+        String NgayBDdate =DateFormat.format(dateBD.getDate());
+        String NgayHHdate = DateFormat.format(dateHH.getDate());
+        prPhieuBaoHanh kt = new prPhieuBaoHanh();
+        countResult= kt.insert(maPBHText, NgayBDdate, NgayHHdate);
     
         if(countResult == 0){
              JOptionPane.showMessageDialog(this,"Lưu không thành công!", "Lỗi thêm CSDL",JOptionPane.ERROR_MESSAGE);
@@ -670,8 +664,8 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
             
             if(pbh != null){
                 txtMaPBH.setText(pbh.getMaPBH());
-                txtNgaybatdau.setText(pbh.getNgaybatdau().toString());
-                txtNgayhethan.setText(pbh.getNgayhethan().toString());
+                dateBD.setDate(pbh.getNgaybatdau());
+                dateHH.setDate(pbh.getNgayhethan());
             }else{
                 ThongBao.showThongBao(parentForm, "Không tìm thấy mã phiếu bảo hành theo yêu cầu", "Thông báo");
             }
@@ -693,8 +687,8 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
                 
                 if(pbh != null){
                     txtMaPBH.setText(pbh.getMaPBH());
-                    txtNgaybatdau.setText(pbh.getNgaybatdau().toString());
-                    txtNgayhethan.setText(pbh.getNgayhethan().toString());
+                    dateBD.setDate(pbh.getNgaybatdau());
+                    dateHH.setDate(pbh.getNgayhethan());
                 }
             }
         }catch(Exception e){
@@ -708,9 +702,9 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
     }//GEN-LAST:event_txtmaBH1ActionPerformed
 
     private void btnthemBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnthemBHActionPerformed
+        Date date=java.util.Calendar.getInstance().getTime();  
         txtmaBH.setText(getmaBH());
-        txtmaSP.setText("");
-        txtngayBH.setText(java.time.LocalDate.now().toString());
+        dateBH.setDate(date);
         txtchiphiBH.setText("");
         txtmotaLoi.setText("");
         loadDataToTable();
@@ -747,20 +741,13 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
         KiemTraDuLieu.DuLieuTrong(txtmaBH, sb, "Mã bảo hành trống!!");
         int countResult=0;
         String maBHText = txtmaBH.getText();
-        String maSPText = txtmaSP.getText();
+        String maSPText = cbmaSP.getSelectedItem().toString();
         Double chiPhiText = Double.parseDouble(txtchiphiBH.getText());
         String motaLoiText = txtmotaLoi.getText();
-        SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try{
-            java.util.Date NgayBHdate =DateFormat.parse(txtngayBH.getText());
-            prBaoHanhSP kt = new prBaoHanhSP();
-            countResult= kt.update(maBHText, maSPText,NgayBHdate,chiPhiText, motaLoiText);
-        }
-        catch(ParseException ex){
-            JOptionPane.showMessageDialog(this, "Có lỗi trong quá trình cập nhật", 
-                    "Sai ngày định dạng",JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(QuanLyBaoHanh.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        SimpleDateFormat DateFormat = new SimpleDateFormat("dd-MMM-yy");
+        String NgayBHdate =DateFormat.format(dateBH.getDate());
+        prBaoHanhSP kt = new prBaoHanhSP();
+        countResult= kt.update(maBHText, maSPText,NgayBHdate,chiPhiText, motaLoiText);
     
         if(countResult == 0){
              JOptionPane.showMessageDialog(this,"Cập nhật không thành công!", "Lỗi cập nhật CSDL",JOptionPane.ERROR_MESSAGE);
@@ -775,20 +762,13 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
         KiemTraDuLieu.DuLieuTrong(txtmaBH, sb, "Mã  bảo hành trống!!");
         int countResult=0;
         String maBHText = txtmaBH.getText();
-        String maSPText = txtmaSP.getText();
+        String maSPText = cbmaSP.getSelectedItem().toString();
         Double chiPhiText = Double.parseDouble(txtchiphiBH.getText());
         String motaLoiText = txtmotaLoi.getText();
-        SimpleDateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try{
-            java.util.Date NgayBHdate =DateFormat.parse(txtngayBH.getText());
-            prBaoHanhSP kt = new prBaoHanhSP();
-            countResult= kt.insert(maBHText, maSPText, NgayBHdate, chiPhiText,motaLoiText);
-        }
-        catch(ParseException ex){
-            JOptionPane.showMessageDialog(this, "Có lỗi trong quá trình lưu", 
-                    "Sai ngày định dạng",JOptionPane.ERROR_MESSAGE);
-            Logger.getLogger(QuanLyBaoHanh.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        SimpleDateFormat DateFormat = new SimpleDateFormat("dd-MMM-yy");
+        String NgayBHdate =DateFormat.format(dateBH.getDate());
+        prBaoHanhSP kt = new prBaoHanhSP();
+        countResult= kt.insert(maBHText, maSPText, NgayBHdate, chiPhiText,motaLoiText);
     
         if(countResult == 0){
              JOptionPane.showMessageDialog(this,"Lưu không thành công!", "Lỗi thêm CSDL",JOptionPane.ERROR_MESSAGE);
@@ -805,8 +785,8 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
             
             if(bh != null){
                 txtmaBH.setText(bh.getMaBH());
-                txtmaSP.setText(bh.getMaSP());
-                txtngayBH.setText(bh.getNgayBH().toString());
+                cbmaSP.setSelectedItem(bh.getMaSP());
+                dateBH.setDate(bh.getNgayBH());
                 txtchiphiBH.setText(String.format("%.0f",(double) bh.getChiphi()));
                 txtmotaLoi.setText(bh.getMotaLoi());
             }else{
@@ -829,8 +809,8 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
                 
                 if(bh != null){
                     txtmaBH.setText(bh.getMaBH());
-                    txtmaSP.setText(bh.getMaSP());
-                    txtngayBH.setText(bh.getNgayBH().toString());
+                    cbmaSP.setSelectedItem(bh.getMaSP());
+                    dateBH.setDate(bh.getNgayBH());
                     txtchiphiBH.setText(String.format("%.0f",(double) bh.getChiphi()));
                     txtmotaLoi.setText(bh.getMotaLoi());
                 }
@@ -841,6 +821,15 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
     }                                          
     }//GEN-LAST:event_tableBHSPMouseClicked
 
+     private void setListMaSP(){
+        prSanPham kt = new prSanPham();
+        HashMap<String, String> listSanPham = kt.getlistmaSP();
+        listmaSP = new ArrayList<String>();
+        listmaSP.addAll(listSanPham.keySet());
+        ArrayList<String> listMaSP = new ArrayList<String>();
+        listMaSP.addAll(listSanPham.values());
+        cbmaSP.setModel(new DefaultComboBoxModel(listMaSP.toArray()));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapnhatPBH;
@@ -853,6 +842,10 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
     private javax.swing.JButton btnthemBH;
     private javax.swing.JButton btntracuuBH;
     private javax.swing.JButton btnxoaBH;
+    private javax.swing.JComboBox<String> cbmaSP;
+    private com.toedter.calendar.JDateChooser dateBD;
+    private com.toedter.calendar.JDateChooser dateBH;
+    private com.toedter.calendar.JDateChooser dateHH;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -879,13 +872,9 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
     private javax.swing.JTable tablePhieuBaoHanh;
     private javax.swing.JTextField txtMaPBH;
     private javax.swing.JTextField txtMaPBH1;
-    private javax.swing.JTextField txtNgaybatdau;
-    private javax.swing.JTextField txtNgayhethan;
     private javax.swing.JTextField txtchiphiBH;
     private javax.swing.JTextField txtmaBH;
     private javax.swing.JTextField txtmaBH1;
-    private javax.swing.JTextField txtmaSP;
     private javax.swing.JTextArea txtmotaLoi;
-    private javax.swing.JTextField txtngayBH;
     // End of variables declaration//GEN-END:variables
 }
