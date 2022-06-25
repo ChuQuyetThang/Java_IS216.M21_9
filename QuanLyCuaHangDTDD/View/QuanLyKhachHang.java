@@ -371,7 +371,10 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
             kh.setCMND(txtCMND.getText());
             
             prKhachHang kt = new prKhachHang();
-            if(kt.update(kh)){
+            if(kh.getSDT().length()<10 || kh.getSDT().length()>11){
+                ThongBao.showLoi(parentForm, "Lỗi số điện thoại", "Lỗi");
+            }
+            else if(kt.update(kh)){
                 ThongBao.showThongBao(parentForm, "Khách hàng đã được cập nhật", "Thông báo");
                 loadDataToTable();
             }else{
@@ -417,6 +420,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         txtEmail.setText("");
         txtSDT.setText("");
         txtCMND.setText("");
+        loadDataToTable();
     }//GEN-LAST:event_btnThemKHActionPerformed
 
     private void btnLuuKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuKHActionPerformed
@@ -437,7 +441,10 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
             kh.setCMND(txtCMND.getText());
             
             prKhachHang kt = new prKhachHang();
-            if(kt.insert(kh)){
+            if(kh.getSDT().length()<10 || kh.getSDT().length()>11){
+                ThongBao.showLoi(parentForm, "Lỗi số điện thoại", "Lỗi");
+            }
+            else if(kt.insert(kh)){
                 ThongBao.showThongBao(parentForm, "Khách hàng đã được lưu", "Thông báo");
                 loadDataToTable();
             }else{

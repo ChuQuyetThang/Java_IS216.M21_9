@@ -270,11 +270,12 @@ public class QuanLyKhuyenMai extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(btntracuuKM)
-                    .addComponent(txtmaKM1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btntracuuKM)
+                        .addComponent(txtmaKM1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -320,6 +321,7 @@ public class QuanLyKhuyenMai extends javax.swing.JPanel {
         txtphantramKM.setText("0");
         txtngayBD.setText("");
         txtngayKT.setText("");
+        loadDataToTable();
     }//GEN-LAST:event_btnthemKMActionPerformed
 
     private void btnxoaKMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaKMActionPerformed
@@ -398,7 +400,7 @@ public class QuanLyKhuyenMai extends javax.swing.JPanel {
     
         if(countResult == 0){
              JOptionPane.showMessageDialog(this,"Lưu không thành công!", "Lỗi thêm CSDL",JOptionPane.ERROR_MESSAGE);
-        }else if(countResult==1){
+        }else if(countResult==1&& Double.parseDouble(txtphantramKM.getText())>=0){
             JOptionPane.showMessageDialog(this,"Lưu thành thành công!");
             loadDataToTable();
         }

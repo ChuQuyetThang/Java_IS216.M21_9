@@ -435,7 +435,6 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         }
         
         try{
-            
             hd.setSoHD(txtsoHD.getText());
             prBanHang kt =new prBanHang();
                 for( int i =0;i <numrow; i++){
@@ -471,9 +470,9 @@ public class QuanLyBanHang extends javax.swing.JPanel {
         HashMap<String, String> listPhieuBaoHanh = kt.getListPhieuBaoHanh();
         listmaPhieuBaoHanh = new ArrayList<String>();
         listmaPhieuBaoHanh.addAll(listPhieuBaoHanh.keySet());
-        ArrayList<String> listMaKM = new ArrayList<String>();
-        listMaKM.addAll(listPhieuBaoHanh.values());
-        cbmaPBH.setModel(new DefaultComboBoxModel(listMaKM.toArray()));
+        ArrayList<String> listMaPBH = new ArrayList<String>();
+        listMaPBH.addAll(listPhieuBaoHanh.values());
+        cbmaPBH.setModel(new DefaultComboBoxModel(listMaPBH.toArray()));
     }
     
     // Hàm xuất hóa đơn

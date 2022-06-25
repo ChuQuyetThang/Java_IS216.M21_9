@@ -607,6 +607,7 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
         txtMaPBH.setText(getmaPBH());
         txtNgaybatdau.setText(java.time.LocalDate.now().toString());
         txtNgayhethan.setText("");
+        loadDataToTable();
     }//GEN-LAST:event_btnThemPBHActionPerformed
 
     private void btnCapnhatPBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapnhatPBHActionPerformed
@@ -712,6 +713,7 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
         txtngayBH.setText(java.time.LocalDate.now().toString());
         txtchiphiBH.setText("");
         txtmotaLoi.setText("");
+        loadDataToTable();
     }//GEN-LAST:event_btnthemBHActionPerformed
 
     private void btnxoaBHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnxoaBHActionPerformed
@@ -762,7 +764,7 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
     
         if(countResult == 0){
              JOptionPane.showMessageDialog(this,"Cập nhật không thành công!", "Lỗi cập nhật CSDL",JOptionPane.ERROR_MESSAGE);
-        }else if(countResult==1){
+        }else if(countResult==1 && Double.parseDouble(txtchiphiBH.getText())>=0){
             JOptionPane.showMessageDialog(this,"Cập nhật thành thành công!");
             loadDataToTable();
         }
@@ -790,7 +792,7 @@ public class QuanLyBaoHanh extends javax.swing.JPanel {
     
         if(countResult == 0){
              JOptionPane.showMessageDialog(this,"Lưu không thành công!", "Lỗi thêm CSDL",JOptionPane.ERROR_MESSAGE);
-        }else if(countResult==1){
+        }else if(countResult==1 && Double.parseDouble(txtchiphiBH.getText())>=0){
             JOptionPane.showMessageDialog(this,"Lưu thành thành công!");
             loadDataToTable();
         }

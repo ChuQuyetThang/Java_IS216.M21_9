@@ -4,7 +4,6 @@
  */
 package View;
 
-import ConnectDB_Notify.KetNoiDatabase;
 import ConnectDB_Notify.KiemTraDuLieu;
 import ConnectDB_Notify.ThongBao;
 import java.util.List;
@@ -13,9 +12,7 @@ import javax.swing.table.DefaultTableModel;
 import Process.prNhanVien;
 import Model.NhanVien;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.poi.ss.usermodel.Cell;
@@ -425,6 +422,8 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         txtEmail.setText("");
         txtDiachi.setText("");
         txtSongaylam.setText("0");
+        txtSongaylam.setEnabled(false);
+        loadDataToTable();
     }//GEN-LAST:event_btnThemNVActionPerformed
 
     private void btnLuuNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuuNVActionPerformed
@@ -448,9 +447,13 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             nv.setGioitinh(rdbNam.isSelected()?1:0);
             
             prNhanVien kt = new prNhanVien();
-            if(kt.insert(nv)){
+            if(nv.getSDT().length()<10 || nv.getSDT().length()>11){
+                ThongBao.showLoi(parentForm, "Lỗi số điện thoại", "Lỗi");
+            }
+            else if(kt.insert(nv)){
                 ThongBao.showThongBao(parentForm, "Nhân viên đã được lưu", "Thông báo");
                 loadDataToTable();
+                txtSongaylam.setEditable(true);
             }else{
                 ThongBao.showXacNhan(parentForm, "Lỗi!! Không thể lưu.", "Cảnh báo");
             }
@@ -485,7 +488,10 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             nv.setGioitinh(rdbNam.isSelected()?1: 0);
             
             prNhanVien kt = new prNhanVien();
-            if(kt.update(nv)){
+            if(nv.getSDT().length()<10 || nv.getSDT().length()>11){
+                ThongBao.showLoi(parentForm, "Lỗi số điện thoại", "Lỗi");
+            }
+            else if(kt.update(nv)&& Integer.parseInt(nv.getSongaylam())>=0){
                 ThongBao.showThongBao(parentForm, "Nhân viên đã được cập nhật", "Thông báo");
                 loadDataToTable();
             }else{
@@ -546,6 +552,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                     rdbNu.setSelected(nv.getGioitinh()==0? true:false);
                     
                 }
+                txtSongaylam.setEnabled(true);
             }
         }catch(Exception e){
             e.printStackTrace();

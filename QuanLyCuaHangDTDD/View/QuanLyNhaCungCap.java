@@ -266,11 +266,12 @@ public class QuanLyNhaCungCap extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8)
-                    .addComponent(txtMaNCC1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTracuuNCC))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtMaNCC1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnTracuuNCC)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -349,7 +350,10 @@ public class QuanLyNhaCungCap extends javax.swing.JPanel {
             ncc.setSDT(txtSDT.getText());
             
             prNhaCungCap kt = new prNhaCungCap();
-            if(kt.insert(ncc)){
+            if(ncc.getSDT().length()<10 || ncc.getSDT().length()>11){
+                ThongBao.showLoi(parentForm, "Lỗi số điện thoại", "Lỗi");
+            }
+            else if(kt.insert(ncc)){
                 ThongBao.showThongBao(parentForm, "Nhà cung cấp đã được lưu", "Thông báo");
                 loadDataToTable();
             }else{
@@ -368,6 +372,7 @@ public class QuanLyNhaCungCap extends javax.swing.JPanel {
         txtDiachi.setText("");
         txtEmail.setText("");
         txtSDT.setText("");
+        loadDataToTable();
     }//GEN-LAST:event_btnThemNCCActionPerformed
 
     private void btnCapnhatNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapnhatNCCActionPerformed
@@ -390,7 +395,10 @@ public class QuanLyNhaCungCap extends javax.swing.JPanel {
             ncc.setSDT(txtSDT.getText());
             
             prNhaCungCap kt = new prNhaCungCap();
-            if(kt.update(ncc)){
+            if(ncc.getSDT().length()<10 || ncc.getSDT().length()>11){
+                ThongBao.showLoi(parentForm, "Lỗi số điện thoại", "Lỗi");
+            }
+            else if(kt.update(ncc)){
                 ThongBao.showThongBao(parentForm, "Nhà cung cấp đã được cập nhật", "Thông báo");
                 loadDataToTable();
             }else{
