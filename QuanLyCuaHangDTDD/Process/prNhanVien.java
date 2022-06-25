@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import Model.NhanVien;
+import java.sql.Statement;
+import java.util.HashMap;
 
 /**
  *
@@ -130,4 +132,20 @@ public class prNhanVien {
             return count;
         }
    }
+    
+    public HashMap<String,String> getlistmaNhanVien() {
+        HashMap<String,String> listNhanVien = new HashMap<>();
+        
+        try ( Connection con = KetNoiDatabase.getOracleConnection()) {
+            String SQL = "SELECT DISTINCT manv,hoten FROM NhanVien ORDER BY manv";
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(SQL);
+            while (rs.next()) {
+                listNhanVien.put(rs.getString("manv"),rs.getString("manv"));
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return listNhanVien;
+    }
 }

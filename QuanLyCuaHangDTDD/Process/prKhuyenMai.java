@@ -10,8 +10,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 /**
  *
@@ -126,4 +128,19 @@ public class prKhuyenMai {
         }
    }
    
+    public HashMap<String,String> getListKhuyenMai() {
+        HashMap<String,String> listKhachHang = new HashMap<>();
+        
+        try ( Connection con = KetNoiDatabase.getOracleConnection()) {
+            String SQL = "SELECT DISTINCT makm,tenkm FROM KhuyenMai ORDER BY makm";
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(SQL);
+            while (rs.next()) {
+                listKhachHang.put(rs.getString("tenkm"),rs.getString("makm"));
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return listKhachHang;
+    }
 }

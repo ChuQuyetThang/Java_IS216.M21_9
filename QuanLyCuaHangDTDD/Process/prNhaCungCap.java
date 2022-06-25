@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import Model.NhaCungCap;
+import java.sql.Statement;
+import java.util.HashMap;
 
 /**
  *
@@ -116,4 +118,19 @@ public class prNhaCungCap {
             return count;
         }
    }
+    public HashMap<String,String> getListNhaCungCap() {
+        HashMap<String,String> listKhachHang = new HashMap<>();
+        
+        try ( Connection con = KetNoiDatabase.getOracleConnection()) {
+            String SQL = "SELECT DISTINCT mancc,tenncc FROM NhaCungCap ORDER BY mancc";
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(SQL);
+            while (rs.next()) {
+                listKhachHang.put(rs.getString("tenncc"),rs.getString("mancc"));
+            }
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        return listKhachHang;
+    }
 }
